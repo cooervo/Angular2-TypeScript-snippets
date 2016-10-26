@@ -1,3 +1,5 @@
+### Static functions in helper class:
+
 A class with static functions to help format Texts:
 
       export class TextFormatterHelper {
@@ -41,3 +43,39 @@ A class with static functions to help format Texts:
          text = TextFormatterService.regexToHtmlBr("/\\n\\n/g", constrNt);
          return TextFormatterService.linkify(text);
      }
+
+### Sort array by custom values
+
+Imagine we have an array of TaskItemVO where TaskItemVO looks like:
+
+
+    export class TaskItemVO {
+          public status: string;
+    }
+    
+Use to sort by status 1) "Complete", 2)"In Progress", 3) "On Hold", 4) "Not Started"
+
+    public sortByStatus(): void {
+
+        let sortObj = {
+            "Complete": 0,
+            "In Progress": 1,
+            "On Hold": 2,
+            "Not Started": 3,
+            "": 4,
+            null: 4,
+            undefined: 4,
+        };
+
+        this.taskItemArray.sort(function (a: TaskItemVO, b: TaskItemVO) {
+
+            if (sortObj[a.status] > sortObj[b.status]) {
+               return -1;
+            } else if (sortObj[a.status] < sortObj[b.status]) {
+               return 1;
+            }
+
+            return 0;
+        });
+    
+    }
