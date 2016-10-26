@@ -81,7 +81,9 @@ Use to sort by status 1) "Complete", 2)"In Progress", 3) "On Hold", 4) "Not Star
     }
     
     
- ### Sort by date
+### Sort by date
+
+Sorting an array by a field that is of type date in typescript
  
     public sortByDateField(): void {
         this.selectedTasks.sort((a: ClassX, b: ClassX) => {
