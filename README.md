@@ -44,7 +44,7 @@ A class with static functions to help format Texts:
          return TextFormatterService.linkify(text);
      }
 
-### Sort array by custom values
+### Sort array by string values
 
 Imagine we have an array of TaskItemVO where TaskItemVO looks like:
 
@@ -78,4 +78,17 @@ Use to sort by status 1) "Complete", 2)"In Progress", 3) "On Hold", 4) "Not Star
             return 0;
         });
     
+    }
+    
+ ### Sort by date
+ 
+    public sortByDateField(): void {
+        this.selectedTasks.sort((a: ClassX, b: ClassX) => {
+             return this.getTime(a.dateField) - this.getTime(b.dateField);
+        });
+    }
+
+    // deals with null/undefined dates
+    private getTime(date?: Date) {
+        return date != null ? date.getTime() : 0; 
     }
